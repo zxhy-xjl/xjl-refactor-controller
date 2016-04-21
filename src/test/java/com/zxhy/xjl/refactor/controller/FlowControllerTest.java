@@ -23,4 +23,10 @@ public class FlowControllerTest extends BaseControllerTest{
 		String resp = this.mockPost(uri, json);
 		System.out.println("add:" + resp);
 	}
+	@Test
+	public void query(){
+		String uri = "/flow/all";
+		String resp = this.mockGet(uri, null);
+		System.out.println("add:" + resp);
+	}
 }

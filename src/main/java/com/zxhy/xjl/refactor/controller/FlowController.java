@@ -1,5 +1,7 @@
 package com.zxhy.xjl.refactor.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -8,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.zxhy.xjl.refactor.business.FlowBusiness;
-import com.zxhy.xjl.refactor.controller.model.FlowAddModel;
+import com.zxhy.xjl.refactor.domain.Flow;
 
 /**
  * 流程控制器
@@ -26,8 +28,17 @@ public class FlowController {
 	 */
 	@ResponseBody
 	@RequestMapping(value="/add",method=RequestMethod.POST,consumes = "application/json")
-	public String add(@RequestBody FlowAddModel flowAddModel){
-		return this.flowBusiness.addFlow(flowAddModel.getFlowName());
+	public void add(@RequestBody Flow flow){
+		this.flowBusiness.addFlow(flow);
+	}
+	/**
+	 * 
+	 * @param flow
+	 */
+	@ResponseBody
+	@RequestMapping(value="/all",method=RequestMethod.GET,consumes = "application/json")
+	public List<Flow> add(){
+		return this.flowBusiness.getAll();
 	}
    
 }
