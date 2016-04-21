@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.zxhy.xjl.refactor.business.FlowBusiness;
 import com.zxhy.xjl.refactor.domain.Flow;
+import com.zxhy.xjl.refactor.service.FlowService;
 
 /**
  * 流程控制器
@@ -20,7 +21,7 @@ import com.zxhy.xjl.refactor.domain.Flow;
 @RequestMapping("/flow")
 public class FlowController {
 	@Autowired
-	private FlowBusiness flowBusiness;
+	private FlowService flowService;
 	/**
 	 * 创建一个新的事项流程
 	 * @param flowAddModel
@@ -29,7 +30,7 @@ public class FlowController {
 	@ResponseBody
 	@RequestMapping(value="/add",method=RequestMethod.POST,consumes = "application/json")
 	public void add(@RequestBody Flow flow){
-		this.flowBusiness.addFlow(flow);
+		this.flowService.addFlow(flow);
 	}
 	/**
 	 * 
@@ -37,8 +38,8 @@ public class FlowController {
 	 */
 	@ResponseBody
 	@RequestMapping(value="/all",method=RequestMethod.GET,consumes = "application/json")
-	public List<Flow> add(){
-		return this.flowBusiness.getAll();
+	public List<Flow> find(){
+		return this.flowService.find();
 	}
    
 }
