@@ -1,5 +1,7 @@
 package com.zxhy.xjl.refactor.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,5 +67,14 @@ public class MaterialController {
 	@RequestMapping(value="/{materialId}/flow/{flowId}",method=RequestMethod.DELETE,consumes = "application/json")
 	public void removeFromFlow(@PathVariable String flowId, @PathVariable String materialId){
 		this.materialService.removeFromFlow(flowId, materialId);
+	}
+	/**
+	 * 根据流程id获取所有材料
+	 * @param flowId
+	 */
+	@ResponseBody
+	@RequestMapping(value="/flow/{flowId}",method=RequestMethod.DELETE,consumes = "application/json")
+	public List<Material> findByFlowId(@PathVariable String flowId){
+		return this.materialService.findByFlowId(flowId);
 	}
 }
