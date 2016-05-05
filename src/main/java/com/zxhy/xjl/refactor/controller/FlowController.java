@@ -2,6 +2,9 @@ package com.zxhy.xjl.refactor.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -38,8 +41,10 @@ public class FlowController {
 	 */
 	@ResponseBody
 	@RequestMapping(value="/all",method=RequestMethod.GET,consumes = "application/json")
-	public List<Flow> find(){
-		return this.flowService.find();
+	public List<Flow> find(HttpServletRequest request){
+		int page = NumberUtils.toInt(request.getParameter("page"));
+		int pageSize = NumberUtils.toInt(request.getParameter("rows"));
+		return this.flowService.find(page, pageSize);
 	}
    
 }

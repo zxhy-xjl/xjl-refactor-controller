@@ -2,6 +2,10 @@ package com.zxhy.xjl.refactor.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,8 +39,10 @@ public class ReviewController {
 	}
 	@ResponseBody
 	@RequestMapping(value="/material/{materialId}",method=RequestMethod.GET,consumes = "application/json")
-	public List<Review> findByMaterialId(@PathVariable String materialId){
-		return this.reviewService.findByMaterialId(materialId);
+	public List<Review> findByMaterialId(@PathVariable String materialId, HttpServletRequest request){
+		int page = NumberUtils.toInt(request.getParameter("page"));
+		int pageSize = NumberUtils.toInt(request.getParameter("rows"));
+		return this.reviewService.findByMaterialId(materialId,page,pageSize);
 	}
 	
 }

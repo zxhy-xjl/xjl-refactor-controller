@@ -27,4 +27,15 @@ public class MaterialControllerTest extends BaseControllerTest {
 		String resp = this.mockPost(uri, json);
 		System.out.println("add:" + resp);
 	}
+	@Test
+	public void addFlow(){
+		String uri = "/material/add/flow/1234567890123456789012345678901234567890";
+		Material material = new Material();
+		material.setName("身份证zzzzzzz");
+		material.setSamplePicUrl("http://img3.imgtn.bdimg.com/it/u=3900826695,3958900846&fm=206&gp=0.jpg");
+		String json = JSONObject.toJSONString(material);
+		System.out.println(json);
+		String resp = this.mockPost(uri, json);
+		System.out.println("add:" + resp);
+	}
 }
